@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../Components/sidebar.dart';
+
 class Default extends StatefulWidget {
   const Default({super.key, required this.title});
 
@@ -11,15 +13,12 @@ class Default extends StatefulWidget {
 
 class _DefaultState extends State<Default> {
   int _counter = 0;
-  bool sidebar = true;
 
   void _incrementCounter() {
     setState(() {
       _counter++;
     });
   }
-
-  void toggleSidebar() => setState(() => sidebar = !sidebar);
 
   @override
   Widget build(BuildContext context) {
@@ -28,24 +27,7 @@ class _DefaultState extends State<Default> {
       //   backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       //   title: Text(widget.title),
       // ),
-      body: Center(
-          child: Row(children: [
-        Flexible(
-            fit: sidebar ? FlexFit.tight : FlexFit.loose,
-            child: Container(
-              // color: Color.fromRGBO(49, 59, 75, 1),
-              color: Theme.of(context).colorScheme.onSecondary,
-              child: Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                Text("Home"),
-                Text("User"),
-                Text("Dictionary"),
-                Text("Audit Trail"),
-                Column(children: [Text("My Profile"), Text("Settings")]),
-                TextButton(onPressed: () => toggleSidebar(), child: Text("Toggle"))
-              ]),
-            )),
-        Container(width: MediaQuery.of(context).size.width * 0.85)
-      ])
+      body: Center(child: Row(children: [SideBar(), Container(width: MediaQuery.of(context).size.width * 0.85)])
 
           // Column(
           //   mainAxisAlignment: MainAxisAlignment.center,
